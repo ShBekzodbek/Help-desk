@@ -22,4 +22,16 @@ bot.start((ctx) =>
 );
 
 
+bot.on('onWebAppOpened', async (ctx) => {
+    const data = ctx.data;
+    const handle = ctx.handle;
+
+    console.log(data, handle);
+
+    // Do something with the data and handle here.
+});
+
+
+
+
 bot.launch();

