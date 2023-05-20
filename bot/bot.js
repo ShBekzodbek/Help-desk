@@ -15,14 +15,16 @@ const web_link = 'https://help-desk-cs11.onrender.com/home';
 bot.start((ctx) =>
     ctx.reply("Welcome :)))))", {
         reply_markup: {
-            keyboard: [[{ text: "web app", web_app: { url: web_link } }]],
+            keyboard: [[{ text: "web app", web_app: { url: web_link }, data: ctx.chat.id }]],
             resize_keyboard: true
         },
     })
 );
 
 
-bot.on('onWebAppOpened', async (ctx) => {
+
+
+bot.hears('onWebAppOpened', async (ctx) => {
     const data = ctx.data;
     const handle = ctx.handle;
 
@@ -34,4 +36,9 @@ bot.on('onWebAppOpened', async (ctx) => {
 
 
 
-bot.launch();
+bot.launch({
+    webhook: {
+        domain: web_link,
+        port: 3000
+    }
+})
