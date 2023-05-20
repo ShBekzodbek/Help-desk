@@ -1,28 +1,24 @@
 const { Telegraf, Markup } = require('telegraf');
 
+
+
 require('dotenv').config();
 
-const bot = new Telegraf(process.env.bot);
 
 
-bot.command("register", (ctx) => {
-    return ctx.reply(
-        "open webapp",
-        Markup.keyboard([
-            Markup.button.webApp(
-                "Open",
-                process.env.domain
-            ),
-        ])
-    );
-});
+const bot = new Telegraf('6212965476:AAEcdh4ZBnCoqWx2v6YYIvRMcMj7Fry7rAU');
 
 
-bot.launch(
-    {
-        webhook: {
-            domain: process.env.domain,
-            port: process.env.port,
-        }
-    }
+
+const web_link = 'https://help-desk-cs11.onrender.com/home';
+
+bot.start((ctx) =>
+    ctx.reply("Welcome :)))))", {
+        reply_markup: {
+            keyboard: [[{ text: "web app", web_app: { url: web_link } }]],
+        },
+    })
 );
+
+
+bot.launch();
