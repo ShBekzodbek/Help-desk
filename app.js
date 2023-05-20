@@ -15,7 +15,7 @@ app.set('views', __dirname + '/src/views');
 
 
 app.get('/home', (req, res, next) => {
-    res.render('index');
+    res.sendFile(__dirname + '/src/views/index.html')
 })
 
 
