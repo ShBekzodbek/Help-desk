@@ -8,7 +8,7 @@ const port = process.env.port || 5000;
 
 const { Telegraf } = require('telegraf');
 const express = require('express');
-const { keyboard } = require('telegraf/typings/markup');
+
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new Telegraf(TOKEN);
