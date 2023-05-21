@@ -32,6 +32,8 @@ app.set('views', __dirname + '/src/views');
 
 // We are receiving updates at the route below!
 app.post(`/bot${TOKEN}`, (req, res) => {
+    console.log(botUsers);
+    console.log(bot);
     bot.processUpdate(req.body);
     bot.sendMessage(botUsers.get('user'), 'Hello');
     res.sendStatus(200);
@@ -42,7 +44,6 @@ app.post(`/bot${TOKEN}`, (req, res) => {
 bot.on('message', msg => {
     bot.sendMessage(msg.chat.id, 'I am alive!');
 });
-
 
 
 
