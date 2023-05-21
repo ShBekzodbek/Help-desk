@@ -15,7 +15,7 @@ const web_link = 'https://help-desk-cs11.onrender.com/home';
 bot.start((ctx) =>
     ctx.reply("Welcome :)))))", {
         reply_markup: {
-            keyboard: [[{ text: "web app", web_app: { url: web_link }, data: ctx.chat.id }]],
+            keyboard: [[{ text: "web app", web_app: { url: web_link } }]],
             resize_keyboard: true
         },
     })
@@ -39,6 +39,6 @@ bot.hears('onWebAppOpened', async (ctx) => {
 bot.launch({
     webhook: {
         domain: web_link,
-        port: 3000
+        port: 4000
     }
 })

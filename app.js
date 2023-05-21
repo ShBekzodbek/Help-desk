@@ -1,23 +1,20 @@
 require('dotenv').config();
 
+const { createServer } = require('http');
+
 const TOKEN = process.env.bot || 'YOUR_TELEGRAM_BOT_TOKEN';
 const url = process.env.domain;
 const port = process.env.port || 5000;
 
-const TelegramBot = require('node-telegram-bot-api');
+const { Telegraf } = require('telegraf');
 const express = require('express');
+const { keyboard } = require('telegraf/typings/markup');
 
 // No need to pass any parameters as we will handle the updates with Express
-const bot = new TelegramBot(TOKEN);
+const bot = new Telegraf(TOKEN);
 
 const botUsers = new Map();
 
-bot.onText(/\/start/, (msg) => {
-    botUsers.set('user', msg.chat.id);
-    bot.sendMessage(msg.chat.id, "Welcome");
-});
-
-// This informs the Telegram servers of the new webhook.
 bot.setWebHook(`${url}/bot${TOKEN}`);
 
 const app = express();
@@ -31,29 +28,15 @@ app.set('views', __dirname + '/src/views');
 
 
 // We are receiving updates at the route below!
-app.post(`/bot${TOKEN}`, (req, res) => {
-    console.log(botUsers);
-    console.log(bot);
-    bot.processUpdate(req.body);
-    bot.sendMessage(botUsers.get('user'), 'Hello');
-    res.sendStatus(200);
+app.post(`/bot_${TOKEN}`, (req, res) => {
+    console.log(req.body);
 });
-
-
-// Just to ping!
-bot.on('message', msg => {
-    bot.sendMessage(msg.chat.id, 'I am alive!');
-});
-
-
-
 
 app.get('/home', (req, res, next) => {
     res.sendFile(__dirname + '/src/views/index.html')
 })
 
-app.listen(port, () => {
-    bot.launch();
-    console.log(`Express server is listening on ${port}`);
-});
+const server = createServer(app);
+
+server.listen(process.env.port || 4000);
 
