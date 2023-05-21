@@ -15,7 +15,6 @@ const bot = new Telegraf(TOKEN);
 
 const botUsers = new Map();
 
-bot.setWebHook(`${url}/bot${TOKEN}`);
 
 const app = express();
 
@@ -37,6 +36,11 @@ app.get('/home', (req, res, next) => {
 })
 
 const server = createServer(app);
+
+bot.launch({
+    webhook: url,
+    port: 4000
+})
 
 server.listen(process.env.port || 4000);
 
