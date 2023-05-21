@@ -1,10 +1,3 @@
-/**
- * This example demonstrates setting up a webook, and receiving
- * updates in your express app
- */
-/* eslint-disable no-console */
-
-
 require('dotenv').config();
 
 const TOKEN = process.env.bot || 'YOUR_TELEGRAM_BOT_TOKEN';
@@ -16,6 +9,13 @@ const express = require('express');
 
 // No need to pass any parameters as we will handle the updates with Express
 const bot = new TelegramBot(TOKEN);
+
+const botUsers = new Map();
+
+bot.onText(/\/start/, (msg) => {
+    botUsers.set('user', msg.chat.id);
+    bot.sendMessage(msg.chat.id, "Welcome");
+});
 
 // This informs the Telegram servers of the new webhook.
 bot.setWebHook(`${url}/bot${TOKEN}`);
@@ -33,13 +33,10 @@ app.set('views', __dirname + '/src/views');
 // We are receiving updates at the route below!
 app.post(`/bot${TOKEN}`, (req, res) => {
     bot.processUpdate(req.body);
+    bot.sendMessage(botUsers.get('user'), 'Hello');
     res.sendStatus(200);
 });
 
-// Start Express Server
-app.listen(port, () => {
-    console.log(`Express server is listening on ${port}`);
-});
 
 // Just to ping!
 bot.on('message', msg => {
@@ -50,7 +47,12 @@ bot.on('message', msg => {
 
 
 
-
 app.get('/home', (req, res, next) => {
     res.sendFile(__dirname + '/src/views/index.html')
 })
+
+app.listen(port, () => {
+    bot.launch();
+    console.log(`Express server is listening on ${port}`);
+});
+
