@@ -18,11 +18,25 @@ const botUsers = new Map();
 
 const app = express();
 
+
 // parse the updates to JSON
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/src/views');
+
+
+const web_link = 'https://help-desk-cs11.onrender.com/home';
+
+bot.start((ctx) =>
+    ctx.reply("Welcome :)))))", {
+        reply_markup: {
+            keyboard: [[{ text: "web app", web_app: { url: web_link } }]],
+            resize_keyboard: true
+        },
+    })
+);
+
 
 
 
