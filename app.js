@@ -10,41 +10,15 @@ const { Telegraf } = require('telegraf');
 const express = require('express');
 
 
-// No need to pass any parameters as we will handle the updates with Express
-const bot = new Telegraf(TOKEN);
-
-const botUsers = new Map();
-
 
 const app = express();
 
 
 // parse the updates to JSON
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/src/views');
-
-
-const web_link = 'https://help-desk-cs11.onrender.com/home';
-
-// Start bot
-bot.start((ctx) =>
-    ctx.reply("Welcome :)))))", {
-        reply_markup: {
-            keyboard: [[{ text: "web app", web_app: { url: web_link } }]],
-            resize_keyboard: true
-        },
-    })
-);
-
-bot.on(/[a-z]/ig, (ctx) => {
-    ctx.reply("something", {
-        reply_markup: {
-            one_time_keyboard: ['wh', 'qh']
-        }
-    })
-})
 
 
 
@@ -52,6 +26,7 @@ bot.on(/[a-z]/ig, (ctx) => {
 // We are receiving updates at the route below!
 app.post(`/bot_${TOKEN}`, (req, res) => {
     console.log(req.body);
+    return res.status(200);
 });
 
 app.get('/home', (req, res, next) => {
@@ -60,10 +35,6 @@ app.get('/home', (req, res, next) => {
 
 const server = createServer(app);
 
-bot.launch({
-    webhook: url,
-    port: 4000
-})
 
 server.listen(process.env.port || 4000);
 

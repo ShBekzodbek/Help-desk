@@ -36,9 +36,4 @@ bot.hears('onWebAppOpened', async (ctx) => {
 
 
 
-bot.launch({
-    webhook: {
-        domain: web_link,
-        port: 4000
-    }
-})
+bot.launch();
